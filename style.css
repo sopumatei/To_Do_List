@@ -1,0 +1,249 @@
+/* FONT VARIABLES */
+:root {
+    --step--2: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.80rem);
+    --step--1: clamp(0.94rem, calc(0.92rem + 0.11vw), 1.00rem);
+    --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+    --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
+    --step-2: clamp(1.62rem, calc(1.50rem + 0.58vw), 1.95rem);
+    --step-3: clamp(1.94rem, calc(1.77rem + 0.87vw), 2.44rem);
+    --step-4: clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem);
+    --step-5: clamp(2.80rem, calc(2.45rem + 1.77vw), 3.82rem);
+  }
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* GENERAL STYLES */
+html {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: var(--step-1);
+}
+
+body {
+    background-color: black;
+    color: #fff;
+    padding: min(0.5em, 100px) 0;
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
+
+button {
+    font-size: var(--step-2);
+    background-color: black;
+    border: none;
+    color: #fead17;
+
+    transition: color 0.08s ease-in;
+}
+
+button:hover {
+    color: rgba(254, 173, 23, 0.6);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+/* MAIN CONTAINER */
+/* #main-container {
+    max-width: 650px;
+    margin: 0 auto;
+} */
+
+/* HEAD SECTION */
+#head-container {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    /* background-color: antiquewhite; */
+    padding: 0 min(0.5em, 100px);
+}
+
+#head-container button {
+    align-self: flex-end;
+}
+
+#head-container h1 {
+    align-self: flex-start;
+}
+
+/* LIST SECTION */
+
+#list-container {
+    margin-top: 35px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#tasks-list {
+    list-style: none;
+    display: grid;
+    place-content: center;
+    grid-template-columns: 100%;
+    gap: max(0.25em, 15px);
+
+    width: min(80vw, 750px);
+}
+
+#tasks-list li {
+    background-color: #111111;
+    color: #5d5c5c;
+
+    padding: 0.5em;
+    border-radius: 16px;
+    word-wrap: break-word;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: min(0.25em, 15px);
+
+    transition: all 0.2s linear;
+}
+
+#tasks-list p {
+    max-width: 60%;
+}
+
+#tasks-list button {
+    font-size: calc(var(--step--2) + 2px);
+    background-color: #111111;
+
+}
+
+.list-button-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: min(0.5em, 20px);
+}
+
+/* POP UP ADD TASK SECTION */
+
+#add-item-box {
+    z-index: 1;
+    background-color: #171717;
+    width: min(90vw, 850px);
+    margin: 0 auto;
+    margin-top: 120vh;
+    position: sticky;
+    bottom: 0.5em;
+    border-radius: 16px;
+    padding: 0.5em;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 0.5em;
+
+    transition: all 0.3s ease-in-out;
+}
+
+#add-item-box button {
+    font-size: var(--step-0);
+    background-color: #171717;
+}
+
+#add-item-box input {
+    font-size: var(--step-0);
+    width: min(90vw, 750px);
+    padding: 0.25em;
+    border-radius: 16px;
+    border: none;
+}
+
+/* ANIMATIONS SECTION */
+
+.task-item-in {
+    animation-name: taskAnimationIn;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes taskAnimationIn {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+  }
+
+.task-item-out {
+    animation-name: taskAnimationOut;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes taskAnimationOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* Media Queries */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #add-item-box {
+        bottom: 2em;
+    }
+
+    #add-item-box input {
+        width: 70vw
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    #add-item-box {
+        bottom: 1em;
+    }
+
+    #add-item-box input {
+        width: min(90vw, 750px);
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+}
